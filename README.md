@@ -1,10 +1,10 @@
 # Paysella
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+PaySella is a comprehensive web-based platform designed to simplify financial management for freelancers and small to medium-sized enterprises (SMEs). The application will provide a robust suite of tools for invoice generation, receipt management, expense tracking, income visualization, and seamless payment integration. By leveraging modern web technologies and a powerful relational database, PaySella aims to streamline the financial processes that are critical to the success of small businesses and independent professionals.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm start` or `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -24,4 +24,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Contact [Olanrewaju A. Olaboye](https://github.com/boyepanthera)
+OR via Email <mailto:boyepanthera@gmail.com>
