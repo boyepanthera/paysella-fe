@@ -1,0 +1,158 @@
+<!-- src/app/components/layout/landing-navbar/landing-navbar.component.html -->
+<nav class="fixed w-full bg-white z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo and Desktop Navigation -->
+      <div class="flex items-center">
+        <div class="flex-shrink-0 flex items-center">
+          <span class="text-xl font-bold">PaySella</span>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex md:ml-10 space-x-8">
+          <a
+            href="#"
+            class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+          >
+            Home
+          </a>
+          <a
+            href="#features"
+            class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+          >
+            Features
+          </a>
+          <a
+            href="#customers"
+            class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+          >
+            Customers
+          </a>
+          <a
+            href="#pricing"
+            class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+          >
+            Pricing
+          </a>
+          <a
+            href="#resources"
+            class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+          >
+            Resources
+          </a>
+        </div>
+      </div>
+
+      <!-- Desktop Sign Up and Login Buttons -->
+      <div class="hidden md:flex items-center space-x-4">
+        <a
+          routerLink="/sign-up"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          Sign up
+        </a>
+        <a
+          routerLink="/login"
+          class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-500"
+        >
+          Log in
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="flex items-center md:hidden">
+        <button
+          type="button"
+          (click)="toggleMobileMenu()"
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+          aria-controls="mobile-menu"
+          [attr.aria-expanded]="isMobileMenuOpen"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed -->
+          <svg
+            *ngIf="!isMobileMenuOpen"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icon when menu is open -->
+          <svg
+            *ngIf="isMobileMenuOpen"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div *ngIf="isMobileMenuOpen" class="md:hidden" id="mobile-menu">
+    <div class="pt-2 pb-3 space-y-1">
+      <a
+        href="#"
+        class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+      >
+        Home
+      </a>
+      <a
+        href="#features"
+        class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+      >
+        Features
+      </a>
+      <a
+        href="#customers"
+        class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+      >
+        Customers
+      </a>
+      <a
+        href="#pricing"
+        class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+      >
+        Pricing
+      </a>
+      <a
+        href="#resources"
+        class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+      >
+        Resources
+      </a>
+    </div>
+    <div class="pt-4 pb-3 border-t border-gray-200">
+      <div class="space-y-2 px-4">
+        <a
+          routerLink="/sign-up"
+          class="w-full flex justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+        >
+          Sign up
+        </a>
+        <a
+          routerLink="/login"
+          class="w-full flex justify-center px-4 py-2 text-base font-medium text-blue-600 hover:text-blue-500"
+        >
+          Log in
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,1 +1,217 @@
-<p>home works!</p>
+<!-- src/app/pages/home/home.component.html -->
+<app-landing-navbar />
+
+<!-- Hero Section -->
+<section class="relative bg-white overflow-hidden pt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+      Effortless Invoicing For<br />Your Business
+    </h1>
+    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+      Create and send professional invoice in seconds, track payment, and get
+      paid faster all from one easy to use app.
+    </p>
+    <a
+      routerLink="/sign-up"
+      class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+    >
+      Get started now
+    </a>
+  </div>
+  <!-- Hero Image -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <img
+      src="assets/hero-image.jpg"
+      alt="Invoice Management"
+      class="w-full rounded-lg shadow-xl"
+    />
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+      Why Choose Us?
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (feature of features; track feature.title) {
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">
+          {{ feature.title }}
+        </h3>
+        <p class="text-gray-600">{{ feature.description }}</p>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- How it Works Section -->
+<section id="how-it-works" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+      How it works
+    </h2>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      @for (step of howItWorks; track step.title) {
+      <div class="text-center">
+        <div class="aspect-w-16 aspect-h-9 mb-6">
+          <img
+            src="assets/step-{{ $index + 1 }}.jpg"
+            alt="{{ step.title }}"
+            class="rounded-lg object-cover"
+          />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">
+          {{ step.title }}
+        </h3>
+        <p class="text-gray-600">{{ step.description }}</p>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Reviews Section -->
+<section id="customers" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+      Customers Review
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (review of reviews; track review.name) {
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <div class="flex items-center mb-4">
+          <img
+            src="assets/avatar-{{ $index + 1 }}.jpg"
+            alt="{{ review.name }}"
+            class="w-12 h-12 rounded-full"
+          />
+          <div class="ml-4">
+            <h3 class="font-semibold text-gray-900">{{ review.name }}</h3>
+            <p class="text-sm text-gray-600">{{ review.role }}</p>
+          </div>
+        </div>
+        <p class="text-gray-600">{{ review.content }}</p>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+      Choose Plan
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (plan of plans; track plan.name) {
+      <div class="bg-gray-50 p-8 rounded-lg">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">
+          {{ plan.name }}
+        </h3>
+        <div class="mb-4">
+          <span class="text-4xl font-bold">${{ plan.price }}</span>
+          <span class="text-gray-600">/Month</span>
+        </div>
+        <p class="text-gray-600 mb-6">{{ plan.description }}</p>
+        <ul class="space-y-3 mb-8">
+          @for (feature of plan.features; track feature) {
+          <li class="flex items-center text-gray-600">
+            <svg
+              class="w-5 h-5 text-green-500 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            {{ feature }}
+          </li>
+          }
+        </ul>
+        <a
+          routerLink="/sign-up"
+          class="block w-full text-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+        >
+          Get started
+        </a>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Solution</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white"
+              >Small Business</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white">Freelancers</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white">Customers</a>
+          </li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Taxes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Company</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white">About</a></li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white">Careers</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Learn</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white">Blogs</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Guides</a></li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white">Templates</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Follow us on</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white">
+            <span class="sr-only">LinkedIn</span>
+            <!-- Add LinkedIn Icon -->
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <span class="sr-only">Facebook</span>
+            <!-- Add Facebook Icon -->
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <span class="sr-only">Instagram</span>
+            <!-- Add Instagram Icon -->
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+      <p>&copy; PaySella. All Rights Reserved</p>
+    </div>
+  </div>
+</footer>
