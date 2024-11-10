@@ -1,4 +1,3 @@
-// src/app/pages/dashboard/dashboard.component.ts
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { Chart } from 'chart.js/auto';
