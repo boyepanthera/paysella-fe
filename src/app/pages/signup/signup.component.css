@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: rgb(249, 250, 251);
+}
+
+/* Add smooth transitions */
+.form-transition {
+  transition: all 0.2s ease-in-out;
+}

@@ -1,3 +1,215 @@
-<div class="min-h-screen bg-gray-50">
-  <app-login-form />
+<!-- src/app/pages/login/login.component.html -->
+<app-app-navbar />
+
+<div
+  class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8"
+>
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      Welcome Back
+    </h2>
+    <p class="mt-2 text-center text-sm text-gray-600">
+      Please sign in to continue to your account
+    </p>
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <!-- Error Message -->
+      @if (errorMessage) {
+      <div class="mb-4 p-4 rounded-md bg-red-50 border border-red-200">
+        <p class="text-sm text-red-600">{{ errorMessage }}</p>
+      </div>
+      }
+
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- Email Field -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">
+            Email
+          </label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm [&:not(:focus)]:invalid:border-red-500 [&:not(:focus)]:invalid:ring-red-500"
+              placeholder="Enter your email"
+            />
+            @if (getEmailError()) {
+            <div
+              class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+            >
+              <svg
+                class="h-5 w-5 text-red-500"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            }
+          </div>
+          @if (getEmailError()) {
+          <p class="mt-2 text-sm text-red-600">{{ getEmailError() }}</p>
+          }
+        </div>
+
+        <!-- Password Field -->
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              formControlName="password"
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm [&:not(:focus)]:invalid:border-red-500 [&:not(:focus)]:invalid:ring-red-500"
+              placeholder="Enter your password"
+            />
+            <button
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center"
+            >
+              @if (showPassword) {
+              <svg
+                class="h-5 w-5 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.28 2.22a.75.75 0 00-1.06 1.06l14.5 14.5a.75.75 0 101.06-1.06l-1.745-1.745a10.029 10.029 0 003.3-4.38 1.651 1.651 0 000-1.185A10.004 10.004 0 009.999 3a9.956 9.956 0 00-4.744 1.194L3.28 2.22zM7.752 6.69l1.092 1.092a2.5 2.5 0 013.374 3.373l1.091 1.092a4 4 0 00-5.557-5.557z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  d="M10.748 13.93l2.523 2.523a9.987 9.987 0 01-3.27.547c-4.258 0-7.894-2.66-9.337-6.41a1.651 1.651 0 010-1.186A10.007 10.007 0 012.839 6.02L6.07 9.252a4 4 0 004.678 4.678z"
+                />
+              </svg>
+              } @else {
+              <svg
+                class="h-5 w-5 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+                <path
+                  fill-rule="evenodd"
+                  d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              }
+            </button>
+          </div>
+          @if (getPasswordError()) {
+          <p class="mt-2 text-sm text-red-600">{{ getPasswordError() }}</p>
+          }
+        </div>
+
+        <!-- Remember Me Checkbox -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input
+              id="remember-me"
+              type="checkbox"
+              formControlName="rememberMe"
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+              Remember me
+            </label>
+          </div>
+          <div class="text-sm">
+            <a
+              routerLink="/forgot-password"
+              class="font-medium text-blue-600 hover:text-blue-500"
+            >
+              Forgot password?
+            </a>
+          </div>
+        </div>
+
+        <!-- Sign In Button -->
+        <div>
+          <button
+            type="submit"
+            [disabled]="loginForm.invalid || isLoading"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+          >
+            @if (isLoading) {
+            <svg
+              class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+              ></path>
+            </svg>
+            Signing in... } @else { Sign in }
+          </button>
+        </div>
+
+        <!-- Sign Up Link -->
+        <div class="text-sm text-center text-gray-600">
+          Not a user yet?
+          <a
+            routerLink="/sign-up"
+            class="font-medium text-blue-600 hover:text-blue-500 ml-1"
+          >
+            Sign Up
+          </a>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative mt-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-gray-500"> Or continue with </span>
+          </div>
+        </div>
+
+        <!-- Social Login Buttons -->
+        <div class="grid grid-cols-1 gap-3">
+          @for (option of socialLoginOptions; track option.name) {
+          <button
+            type="button"
+            (click)="socialLogin(option.name)"
+            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            <img
+              class="h-5 w-5"
+              [src]="'assets/' + option.icon"
+              [alt]="option.name + ' logo'"
+              title="Provider logo"
+            />
+            <span class="sr-only">Sign in with {{ option.name }}</span>
+          </button>
+          }
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
