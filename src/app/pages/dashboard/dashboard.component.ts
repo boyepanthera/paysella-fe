@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  PLATFORM_ID,
+  Inject,
+  AfterViewInit,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { Chart } from 'chart.js/auto';
 
@@ -25,7 +34,15 @@ interface PendingInvoice {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements AfterViewInit {
+  @ViewChild('expensesChart') expensesChartRef!: ElementRef;
+  @ViewChild('incomeChart') incomeChartRef!: ElementRef;
+
+  private expensesChart: Chart | null = null;
+  private incomeChart: Chart | null = null;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   timeFilters = ['Today', 'This Week', 'This Month', 'This Year', 'Range'];
   currentFilter = 'Today';
 
@@ -62,6 +79,15 @@ export class DashboardComponent implements OnInit {
     this.initializeCharts();
   }
 
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      // Only initialize charts in browser environment
+      setTimeout(() => {
+        this.initializeCharts();
+      }, 0);
+    }
+  }
+
   setTimeFilter(filter: string) {
     this.currentFilter = filter;
     // Update data based on filter
@@ -80,8 +106,18 @@ export class DashboardComponent implements OnInit {
   }
 
   private initializeCharts() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    // Clean up existing charts if they exist
+    if (this.expensesChart) {
+      this.expensesChart.destroy();
+    }
+    if (this.incomeChart) {
+      this.incomeChart.destroy();
+    }
+
     // Initialize Expenses Chart
-    new Chart('expensesChart', {
+    this.expensesChart = new Chart(this.expensesChartRef.nativeElement, {
       type: 'line',
       data: {
         labels: ['Jan', 'Feb', 'Mar'],
@@ -98,6 +134,7 @@ export class DashboardComponent implements OnInit {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             display: false,
@@ -112,7 +149,7 @@ export class DashboardComponent implements OnInit {
     });
 
     // Initialize Income Chart
-    new Chart('incomeChart', {
+    this.incomeChart = new Chart(this.incomeChartRef.nativeElement, {
       type: 'line',
       data: {
         labels: ['Jan', 'Feb', 'Mar'],
@@ -129,6 +166,7 @@ export class DashboardComponent implements OnInit {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             display: false,

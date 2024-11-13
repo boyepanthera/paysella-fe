@@ -23,8 +23,8 @@ export class SidebarComponent {
         'M4 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5zm0 8a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2zm0 8a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2z',
     },
     {
-      path: '/estimate',
-      label: 'Estimate',
+      path: '/estimates',
+      label: 'Estimates',
       svgPath:
         'M19 9V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v4M19 9H5M19 9v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9m5 4v6m4-6v6',
     },

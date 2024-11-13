@@ -66,13 +66,19 @@
         <!-- Expenses Chart -->
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <h3 class="text-lg font-semibold mb-4">Monthly Expenses</h3>
-          <canvas id="expensesChart"></canvas>
+          <div class="h-64">
+            <!-- Added container with fixed height -->
+            <canvas #expensesChart class="w-full h-full"></canvas>
+          </div>
         </div>
 
         <!-- Income Chart -->
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <h3 class="text-lg font-semibold mb-4">Monthly Income</h3>
-          <canvas id="incomeChart"></canvas>
+          <div class="h-64">
+            <!-- Added container with fixed height -->
+            <canvas #incomeChart class="w-full h-full"></canvas>
+          </div>
         </div>
       </div>
 
